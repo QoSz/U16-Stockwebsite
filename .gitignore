@@ -132,8 +132,16 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+
 # pytype static type analyzer
 .pytype/
 
 # Cython debug symbols
 cython_debug/
+
+# Removing VSCode related files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
