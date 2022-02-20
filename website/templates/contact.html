@@ -1,0 +1,60 @@
+{% extends "layout.html" %} {% block content %} 
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+</head>
+<style type="text/css">
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+</style>
+<br><br><br>
+<div> 
+  {% if success %} 
+  <p class="lead text-success">Thank you for feedback !</p> 
+  {% endif %} 
+</div> 
+{% for message  in form.name.errors %} 
+<div class="flash">
+  {{ message }}
+</div> 
+{% endfor %} 
+{% for message  in form.email.errors %} 
+<div class="flash">
+  {{ message }}
+</div> 
+{% endfor %} 
+{% for message  in form.subject.errors %} 
+<div class="flash">
+  {{ message }}
+</div> 
+{% endfor %} 
+{% for message  in form.message.errors %} 
+<div class="flash">
+  {{ message }}
+</div> 
+{% endfor %} 
+<div class="col-md-8 ml-5">
+  <form action="{{ url_for('contactus') }}" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label() }}
+    <a href="#" data-toggle="popover" title="Help message" data-content="Enter your cardname(eg.Tim Oliver)">
+      {{ form.name(class="form-control") }}</a>
+    {{ form.email.label(class="pt-4") }}
+    <a href="#" data-toggle="popover" title="Help message" data-content="Enter your email">
+      {{ form.email(class="form-control") }}</a>
+    {{ form.subject.label(class="pt-4") }}
+    <a href="#" data-toggle="popover" title="Help message" data-content="Enter a subject">
+      {{ form.subject(class="form-control") }}</a>
+    {{ form.message.label(class="pt-4") }}
+    <a href="#" data-toggle="popover" title="Help message" data-content="Enter your message">
+      {{ form.message(class="form-control", style="height: 200px; padding-top:-60px;") }}</a>
+    {{ form.submit(class="btn btn-outline-success ml-1 mt-5") }}
+  </form>
+</div>
+<script>
+  $(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+  });
+</script> {% endblock %}
